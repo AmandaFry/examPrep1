@@ -23,18 +23,18 @@ class User(Controller):
                 flash(message)
             return self.load_view('index.html')
         else:
-            #login and store name and I in session
-            session['id'] = user_login['user']['id']
-            session['name'] = user_login['user']['f_name'] + ' ' + user_login['user']['l_name']
+            #login and store name and I in session, this one needed [0] not sure why
+            session['id'] = user_login['user'][0]['id']
+            session['name'] = user_login['user'][0]['first_name'] + ' ' + user_login['user'][0]['last_name']
             return redirect('/dashboard')
-            #return self.load_view('dashboard.html')
+ 
 
     def register(self):
         user_info = {
             'f_name' : request.form['f_name'],
             'l_name' : request.form['l_name'],
             'email' : request.form['email'],
-            'password' : request.form['passw'],
+            'passw' : request.form['passw'],
             'conf_passw' : request.form['conf_passw']
         }
 
@@ -45,7 +45,8 @@ class User(Controller):
                 flash(message)
             return self.load_view('index.html')
         else:
-            return redirect('/dashboard')
+            flash('Succesfully registered please login')
+            return redirect('/')
 
     def logout(self):
         session.clear()
