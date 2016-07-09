@@ -1,8 +1,56 @@
+<!DOCTYPE HTML>
 <html>
-  <head>
+<head> 
+    <meta charset="UTF-8">
+	<title>TODO: Title goes here</title>
+	<meta name="description" content="TODO: description goes here ">
+    <!-- linking a css style sheet -->
     <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
-  </head>
-  <body>
-    The best place to start is the "WelcomeController.py" file in app/controllers.
-  </body>
+	<link rel="stylesheet" type="text/css" href="/static/css/AmandaTemplate.css">
+   </head>
+<body>	
+    <div class="container">
+        <div class="header">
+            <h1><span>(Python) </span> Exam practice take one</h1>
+            <h3>Assigment - optional</h3>
+            <div class="descr">
+                <p>Assigment description:</p>
+                <p>User login and register page</p>
+                <ul>
+                    <li>Index page to login and register</li>
+                </ul>
+            </div>
+        </div><!-- end of header content-->
+        <div class="maincontent">
+            <div class="column">
+            <h2>Log In</h2>
+                <form  action="/login" action="POST">
+                    <div class="row">
+                        Email: <input type="text" name="email">
+                    </div>
+                    <div class="row">
+                        Password: <input type="text" name="passw">
+                    </div>
+                    <input type="submit" name="login" value="Log In">
+                </form>
+            </div>
+            <div class="column">
+                <h2>Registration</h2>
+                <form  action="/register" action="POST">
+                    <div class="row">First Name: <input type="text" name="f_name"></div>
+                    <div class="row">Last Name: <input type="text" name="l_name"></div>
+                    <div class="row">Email: <input type="text" name="email"></div>
+                    <div class="row">Password: <input type="password" name="passw"></div>
+                    <div class="row">Confirm Password: <input type="password" name="conf_passw"></div>
+                    <div class="row"><input type="submit" name="register" value="Register"></div>
+                </form>
+            </div>
+        </div><!-- end of main content-->
+        <div class="footer">
+            <p>created by: Amanda Fry</p>
+            <a class="footerSpace" href="mailto:FeAmandaF@hotmail.com">FeAmandaF@hotmail.com</a>
+            <a href="https://www.linkedin.com/in/amandafry1">Amanda's LinkedIn profile</a>
+        </div><!-- end of footer -->
+      </div><!-- end of container -->
+</body>
 </html>
