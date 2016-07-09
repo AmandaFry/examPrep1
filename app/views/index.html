@@ -22,6 +22,14 @@
             </div>
         </div><!-- end of header content-->
         <div class="maincontent">
+            <!-- Flas message to communicate errors -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red; margin-left: 25%">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <div class="column">
             <h2>Log In</h2>
                 <form  action="/login" action="POST">

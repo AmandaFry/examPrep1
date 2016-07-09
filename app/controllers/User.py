@@ -19,13 +19,15 @@ class User(Controller):
         
         if user_login['status']  == False:
             #return to logon page and show errors
-
+            if message in user_login['errors']:
+                flash(message)
             return self.load_view('index.html')
         else:
             #login and store name and I in session
             session['id'] = user_login['user']['id']
             session['name'] = user_login['user']['f_name'] + ' ' + user_login['user']['l_name']
-            return self.load_view('dashboard.html')
+            return redirect('/dashboard')
+            #return self.load_view('dashboard.html')
 
     def register(self):
         user_info = {
@@ -40,3 +42,6 @@ class User(Controller):
 
         return self.load_view('index.html')
 
+    def logout(self):
+        session.clear()
+        return redirect('/')

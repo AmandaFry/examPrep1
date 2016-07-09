@@ -15,6 +15,5 @@ class Travel(Controller):
 
    
     def dashboard(self):
-
         return self.load_view('dashboard.html')
 
