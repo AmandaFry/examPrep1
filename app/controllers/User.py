@@ -17,7 +17,15 @@ class User(Controller):
         }
         user_login = self.models['User_Model'].login_user[user_info]
         
-        return self.load_view('index.html')
+        if user_login['status']  == False:
+            #return to logon page and show errors
+
+            return self.load_view('index.html')
+        else:
+            #login and store name and I in session
+            session['id'] = user_login['user']['id']
+            session['name'] = user_login['user']['f_name'] + ' ' + user_login['user']['l_name']
+            return self.load_view('dashboard.html')
 
     def register(self):
         user_info = {
