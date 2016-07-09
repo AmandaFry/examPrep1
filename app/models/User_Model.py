@@ -23,7 +23,10 @@ class User_Model(Model):
             query = "SELECT * FROM users WHERE email = :email"
             data = {'email' : user_info['email']}
             loged_in_user = self.db.query_db(query,data) #run query and assign to varuable 
-
+            print ('$' * 25)
+            print loged_in_user
+            print ('$' * 25)
+            
             if len(loged_in_user) == 0:
                 errors.append("User was not found, please register")
             elif not self.bcrypt.check_password_hash(loged_in_user[0]['password'], user_info['passw']):
@@ -79,6 +82,9 @@ class User_Model(Model):
                     'passw':hashed_pw,
                 }
                 registered_user = self.db.query_db(query, data)
+                print ('%' * 25)
+                print registered_user
+                print ('%' * 25)
                 return {"status": True }
                 
 

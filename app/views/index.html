@@ -32,19 +32,15 @@
             {% endwith %}
             <div class="column">
             <h2>Log In</h2>
-                <form  action="/login" action="POST">
-                    <div class="row">
-                        Email: <input type="text" name="email">
-                    </div>
-                    <div class="row">
-                        Password: <input type="text" name="passw">
-                    </div>
-                    <input type="submit" name="login" value="Log In">
+                <form  action="/login" method="POST">
+                    <div class="row">Email: <input type="text" name="email"></div>
+                    <div class="row">Password: <input type="text" name="passw"></div>
+                    <div class="row"><input type="submit" name="login" value="Log In"></div>
                 </form>
             </div>
             <div class="column">
                 <h2>Registration</h2>
-                <form  action="/register" action="POST">
+                <form  action="/register" method="POST">
                     <div class="row">First Name: <input type="text" name="f_name"></div>
                     <div class="row">Last Name: <input type="text" name="l_name"></div>
                     <div class="row">Email: <input type="text" name="email"></div>

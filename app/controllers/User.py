@@ -15,11 +15,11 @@ class User(Controller):
             'email' : request.form['email'],
             'passw' : request.form['passw']
         }
-        user_login = self.models['User_Model'].login_user[user_info]
+        user_login = self.models['User_Model'].login_user(user_info)
         
         if user_login['status']  == False:
             #return to logon page and show errors
-            if message in user_login['errors']:
+            for message in user_login['errors']:
                 flash(message)
             return self.load_view('index.html')
         else:
@@ -38,9 +38,14 @@ class User(Controller):
             'conf_passw' : request.form['conf_passw']
         }
 
-        user_register = self.models['User_Model'].register_user[user_info]
+        user_register = self.models['User_Model'].register_user(user_info)
 
-        return self.load_view('index.html')
+        if user_register['status'] == False:
+            for message in user_register['errors']:
+                flash(message)
+            return self.load_view('index.html')
+        else:
+            return redirect('/dashboard')
 
     def logout(self):
         session.clear()
