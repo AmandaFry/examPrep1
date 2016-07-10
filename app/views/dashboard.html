@@ -11,7 +11,7 @@
 <body>	
     <div class="container">
         <div class="header">
-            <h1><span>(Python) </span> Dashboard page</h1>
+            <h1><span>(Python) </span> Dashboard Page</h1>
             <h3>Assigment - optional</h3>
             <div class="descr">
                 <p>Assigment description:</p>
@@ -22,8 +22,19 @@
             </div>
         </div><!-- end of header content-->
         <div class="maincontent">
-            <h2>I am dahsboard page</h2>
-            <p> Welcome: {{ session['name']}} - ({{ session['id']}}) <a href="/logout">Logout</a> <a href="/newplan">Add New Travel Plan</a> </p>
+            <p style="text-align:right"> Welcome: {{ session['name']}} - ({{ session['id']}})  <a href="/newplan">Add New Travel Plan</a> - <a href="/logout">Logout</a></p>
+
+            <h3>My trips schedule</h3>
+            <table>
+                    <tr>
+                        <th class="tab">Destination</th>
+                        <th class="tab">Travel Start Date</th>
+                        <th class="tab">Travel End Date</th>
+                        <th class="tab">Plan</th>
+                    </tr>
+            </table>
+
+            <h3>Other's trip schedule</h3>
             
             
 
