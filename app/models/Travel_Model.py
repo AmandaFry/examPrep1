@@ -40,12 +40,31 @@ class Travel_Model(Model):
             self.db.query_db(query, data)
             return {"status": True}
 
+    def join_trip(self, id):
+        return {"status": True}
+
     def my_trips(self):
-        pass
+        query = "SELECT * FROM trips WHERE tripOrganizer_id = :id"
+        data = { 'id' : session['id']}
+        my_trips= self.db.query_db(query,data)
+        return (my_trips)
 
     def joined_trips(self):
+        # query = "SELECT * FROM trips"
+        # data = 
+        # joined_trips = self.db.query_db(query,data)
         pass
 
     def others_trips(self):
-        pass
+        # query = "SELECT * FROM trips WHERE tripOrganizer_id != :id"
+        query = "SELECT users.first_name, users.last_name, trips.id, trips.tripOrganizer_id, trips.destination, trips.plan, trips.start_date, trips.end_date FROM users JOIN trips ON users.id = trips.tripOrganizer_id WHERE trips.tripOrganizer_id != :id"
+        data = { 'id' : session['id']}
+        others_trips = self.db.query_db(query,data)
+        return (others_trips)
+
+    def trip_detail(self, id):
+        query = "SELECT users.first_name, users.last_name, trips.destination, trips.plan, trips.start_date, trips.end_date FROM users JOIN trips ON users.id = trips.tripOrganizer_id WHERE trips.id = :id"
+        data = {'id' : id}
+        trip_detail = self.db.query_db(query, data)
+        return (trip_detail)
 

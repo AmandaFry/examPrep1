@@ -10,7 +10,7 @@ class Travel(Controller):
         my_trips = self.models['Travel_Model'].my_trips()
         joined_trips = self.models['Travel_Model'].joined_trips()
         others_trips = self.models['Travel_Model'].others_trips()
-        return self.load_view('dashboard.html' my_trips=my_trips, joined_trips=joined_trips, others_trips=others_trips)
+        return self.load_view('dashboard.html', my_trips=my_trips, joined_trips=joined_trips, others_trips=others_trips)
 
     def newplan(self):
         return self.load_view('newplan.html')
@@ -31,3 +31,10 @@ class Travel(Controller):
         else:
             return redirect ('/dashboard')
 
+    def details(self, id):
+        trip_detail = self.models['Travel_Model'].trip_detail(id)
+        return self.load_view('details.html', trip_detail=trip_detail)
+
+    def join_trip(self, id):
+        join_trip = self.models["Travel_Model"].join_trip(id)
+        return redirect ('/dashboard')

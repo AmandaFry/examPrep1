@@ -22,7 +22,19 @@
             </div>
         </div><!-- end of header content-->
         <div class="maincontent">
-            <h2>Travel detail page</h2>
+            <p style="text-align:right">Welcome: {{ session['name'] }} - <a href="/dashboard">Home</a> - <a href="/logout">Logout</a></p>
+
+            <h2>{{trip_detail[0]['destination']}}</h2>
+            <div class="row">Planned by: {{ trip_detail[0]['first_name'] }} {{ trip_detail[0]['last_name'] }}</div>
+            <div class="row">Description: {{ trip_detail[0]['plan'] }}</div>
+            <div class="row">Start date: {{ trip_detail[0]['start_date'] }}</div>
+            <div class="row">End date:  {{ trip_detail[0]['end_date'] }}</div>
+            </br>
+
+            <h2>Other joined the trip</h2>
+            
+
+
         </div><!-- end of main content-->
         <div class="footer">
             <p>created by: Amanda Fry</p>

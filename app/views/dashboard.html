@@ -32,10 +32,40 @@
                         <th class="tab">Travel End Date</th>
                         <th class="tab">Plan</th>
                     </tr>
+                {% if my_trips %}
+                    {% for trip in my_trips %}
+                    <tr>
+                       <td class="tab"> <a href="/details/{{ trip['id'] }}">{{ trip['destination'] }}</a></td> 
+                       <td class="tab">{{ trip['start_date'] }}</td> 
+                       <td class="tab">{{ trip['end_date'] }}</td> 
+                       <td class="tab">{{ trip['plan'] }}</td>
+                    </tr> 
+                    {% endfor %}
+                {% endif %}
             </table>
-
+            </br>
             <h3>Other's trip schedule</h3>
-            
+            <table>
+                <tr>
+                    <th class="tab">Name</th>
+                    <th class="tab">Destination</th>
+                    <th class="tab">Travel start date</th>
+                    <th class="tab">Travel end date</th>
+                    <th class="tab">Join trip</th>
+                </tr>
+                {% if others_trips %}
+                    {% for o_trip in others_trips %}
+                        <tr>
+                            <th class="tab">{{ o_trip['first_name']}} {{ o_trip['last_name']}} - {{ o_trip['tripOrganizer_id'] }}</th>
+                            <th class="tab"><a href="/details/{{ o_trip['id'] }}">{{ o_trip['destination'] }}</a></th>
+                            <th class="tab">{{ o_trip['start_date'] }}</th>
+                            <th class="tab">{{ o_trip['end_date'] }}</th>
+                            <th class="tab"><a href="/join_trip/{{ o_trip['id'] }}">Join</a></th>
+
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
             
 
         </div><!-- end of main content-->
