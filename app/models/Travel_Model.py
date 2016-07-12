@@ -47,7 +47,8 @@ class Travel_Model(Model):
         return {"status": True}
 
     def my_trips(self):
-        query = "SELECT * FROM trips WHERE tripOrganizer_id = :id"
+        # query = "SELECT * FROM trips WHERE tripOrganizer_id = :id"
+        query = "SELECT * FROM trips LEFT JOIN trip_friends ON trips.id = trip_friends.trips_id WHERE trips.tripOrganizer_id = :id OR trip_friends.friends_id = :id"
         data = { 'id' : session['id']}
         my_trips= self.db.query_db(query,data)
         return (my_trips)
@@ -60,7 +61,9 @@ class Travel_Model(Model):
 
     def others_trips(self):
         # query = "SELECT * FROM trips WHERE tripOrganizer_id != :id" #not showing the user name, but correct partial info
-        query = "SELECT users.first_name, users.last_name, trips.id, trips.tripOrganizer_id, trips.destination, trips.plan, trips.start_date, trips.end_date FROM users JOIN trips ON users.id = trips.tripOrganizer_id WHERE trips.tripOrganizer_id != :id"
+        # query = "SELECT users.first_name, users.last_name, trips.id, trips.tripOrganizer_id, trips.destination, trips.plan, trips.start_date, trips.end_date FROM users JOIN trips ON users.id = trips.tripOrganizer_id WHERE trips.tripOrganizer_id != :id"
+        #query = "SELECT * FROM users JOIN trips ON users.id = trips.tripOrganizer_idtrips WHERE trips.id NOT IN (SELECT trips.id FROM trips LEFT JOIN trip_friends ON trips.id = trip_friends.trips_id WHERE trips.tripOrganizer_id = :id OR trip_friends.friends_id = :id)"
+        query = "SELECT * FROM users JOIN trips ON users.id = trips.tripOrganizer_id WHERE trips.id NOT IN (SELECT trips.id FROM trips LEFT JOIN trip_friends ON trips.id = trip_friends.trips_id WHERE trips.tripOrganizer_id = :id OR trip_friends.friends_id = :id)"
         data = { 'id' : session['id']}
         others_trips = self.db.query_db(query,data)
         return (others_trips)
